@@ -1,25 +1,53 @@
 import java.net.*;
+import java.util.*;
 import java.io.*;
 
 public class ClientSocket1 {
 	
-	private static final String SERVER_IP = "127.0.0.1";
-	private static final int PORT = 9090;
+	private static final int PORT = 3030;
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
-
-		Socket client = new Socket(SERVER_IP, PORT);
 		
-		BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+		Scanner scanner = new Scanner(System.in);
+		String keyBoardInput = "";
 		
-		String serverResponse = input.readLine();
+		System.out.print("Enter server IP Address: ");
+		keyBoardInput = scanner.nextLine();
 		
-		System.out.println("Today is: " + serverResponse);
+		System.out.println();
 		
-		client.close();
+		if (keyBoardInput.equals(""))
+			return;
+		
+		Socket clientSocket = new Socket(keyBoardInput, PORT);
+		
+		keyBoardInput = "";
+		
+		BufferedReader inputFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		PrintWriter outputToServer = new PrintWriter(clientSocket.getOutputStream(), true);
+		
+		System.out.println("KeyboardInput before while loop = " + keyBoardInput);
+		
+		while(!keyBoardInput.equals("7")) {
+			
+			System.out.println("KeyboardInput in while loop = " + keyBoardInput);
+			
+			keyBoardInput = scanner.nextLine();
+			
+			System.out.println("KeyboardInput sending to server = " + keyBoardInput);
+			outputToServer.println(keyBoardInput);
+			
+			String responseFromServer = inputFromServer.readLine();
+			System.out.println("Server says: " + responseFromServer);
+			
+		}
+		
+		System.out.println("Goodbye :).");
+		
+		clientSocket.close();
 		System.exit(0);
 		
-	}
-
-}
+	} // main
+	
+} // class

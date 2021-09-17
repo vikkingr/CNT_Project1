@@ -14,9 +14,15 @@ public class ClientThread extends Thread {
 	@Override
 	public void run() {
 		
+		double timeStart;
+
+        double timeEnd;
+		
 		Socket clientSocket;
+		
 		try {
 			
+			timeStart = System.currentTimeMillis();
 			clientSocket = new Socket(ipAddress, portNumber);
 			
 			BufferedReader inputFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -31,11 +37,20 @@ public class ClientThread extends Thread {
 				if (responseFromServer.contains("endOfLine"))
 					break;
 				
+				if (responseFromServer.equals("ServerDone")) {
+					System.out.println("Closing Connection.");
+					return;
+				}
+				
 				System.out.println(responseFromServer);
 				
 			}
 			
+			timeEnd = System.currentTimeMillis();
 			clientSocket.close();
+			
+			System.out.println("Response time = " + (timeEnd - timeStart));
+			
 			outputToServer.close();
 			inputFromServer.close();
 			

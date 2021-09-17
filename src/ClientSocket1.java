@@ -5,6 +5,7 @@ import java.io.*;
 public class ClientSocket1 {
 	
 	private static final int PORT = 3031;
+//	public boolean isServerDone = false;
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
@@ -56,10 +57,6 @@ public class ClientSocket1 {
 			
 			menuOption = scanner.nextLine();
 			
-			if (menuOption.equals("7")) {
-				break;
-			}
-			
 			ArrayList<ClientThread> clientThreadList = new ArrayList<ClientThread>();
 			
 			for (int i = 0; i < Integer.parseInt(numOfThreads); i++) {
@@ -85,6 +82,10 @@ public class ClientSocket1 {
                      e.printStackTrace();
 				 }// end try catch statement
 				
+			}
+			
+			if (menuOption.equals("7")) {
+				break;
 			}
 			
 			menuOption = "";

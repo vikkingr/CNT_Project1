@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.*;
 
 public class ServerSocket1 {
 
@@ -26,57 +27,56 @@ public class ServerSocket1 {
 			System.out.println("[S E R V E R]:");
 			System.out.println("Client connected!");
 				
-				clientMessage = inputToClient.readLine();
+			clientMessage = inputToClient.readLine();
+			
+			if (clientMessage.equals("1")) {
+				callCurrentDateAndTime(outputToClient);
+
+				System.out.println("Client says: " + clientMessage);
+			}
+			if (clientMessage.equals("2")) {
+				callUptime(outputToClient);
 				
-				if (clientMessage.equals("1")) {
-					callCurrentDateAndTime(outputToClient);
+				System.out.println("Client says: " + clientMessage);
+			}
+			if (clientMessage.equals("3")) {
+				callMemoryUse(outputToClient);
 
-					System.out.println("Client says: " + clientMessage);
-				}
-				if (clientMessage.equals("2")) {
-					callUptime(outputToClient);
-					
-					System.out.println("Client says: " + clientMessage);
-				}
-				if (clientMessage.equals("3")) {
-					callMemoryUse(outputToClient);
+				System.out.println("Client says: " + clientMessage);
+			}
+			if (clientMessage.equals("4")) {
+				callNetstat(outputToClient);
 
-					System.out.println("Client says: " + clientMessage);
-				}
-				if (clientMessage.equals("4")) {
-					callNetstat(outputToClient);
+				System.out.println("Client says: " + clientMessage);
+			}
+			if (clientMessage.equals("5")) {
+				callCurrentUsers(outputToClient);
 
-					System.out.println("Client says: " + clientMessage);
-				}
-				if (clientMessage.equals("5")) {
-					callCurrentUsers(outputToClient);
+				System.out.println("Client says: " + clientMessage);
+			}
+			if (clientMessage.equals("6")) {
+				callRunningProcesses(outputToClient);
 
-					System.out.println("Client says: " + clientMessage);
-				}
-				if (clientMessage.equals("6")) {
-					callRunningProcesses(outputToClient);
-
-					System.out.println("Client says: " + clientMessage);
-				}
-				if (clientMessage.equals("7")) {
-					System.out.println("Client says: " + clientMessage);
-					break;
-				}
+				System.out.println("Client says: " + clientMessage);
+			}
+			if (clientMessage.equals("7")) {
+				outputToClient.println("ServerDone");
 				
-				clientMessage = "";
+				System.out.println("Client says: " + clientMessage);
+			}
+			
+			clientMessage = "";
 			
 			outputToClient.println("Goodbye!");
 			
 			System.out.println("[S E R V E R]:");
-			System.out.println("Closing connections.");
+			System.out.println("Responded to client.");
 			
 			inputToClient.close();
 			outputToClient.close();
 			clientSocket.close();
 			
 		}
-		
-		
 		
 	}// main
 	

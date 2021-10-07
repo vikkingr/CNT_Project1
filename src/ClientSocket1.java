@@ -6,7 +6,8 @@ public class ClientSocket1 {
 	
 	private static final int PORT = 3031;
 //	public boolean isServerDone = false;
-
+	public static ArrayList<Double> arrayResponseTimes = new ArrayList<Double>();
+	
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -84,11 +85,22 @@ public class ClientSocket1 {
 				
 			}
 			
+			if (!arrayResponseTimes.isEmpty()) {
+				Double sumResponseTimes = 0.0;
+				
+				for (Double element : arrayResponseTimes) {
+					sumResponseTimes += element;
+				}
+				
+				System.out.println("Response time: " + sumResponseTimes);
+			}
+			
 			if (menuOption.equals("7")) {
 				break;
 			}
 			
 			menuOption = "";
+			arrayResponseTimes.clear();
 			
 		}
 		

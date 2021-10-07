@@ -47,10 +47,11 @@ public class ClientThread extends Thread {
 			}
 			
 			timeEnd = System.currentTimeMillis();
+			
+			//System.out.println("Response time = " + (timeEnd - timeStart));
+			ClientSocket1.arrayResponseTimes.add(timeEnd - timeStart);
+			
 			clientSocket.close();
-			
-			System.out.println("Response time = " + (timeEnd - timeStart));
-			
 			outputToServer.close();
 			inputFromServer.close();
 			

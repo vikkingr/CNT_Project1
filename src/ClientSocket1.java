@@ -58,6 +58,35 @@ public class ClientSocket1 {
 			
 			menuOption = scanner.nextLine();
 			
+			if (menuOption.length() > 1)
+			{
+				System.out.println("Invalid input.");
+				continue;
+			}
+			else
+			{
+				switch (menuOption.charAt(0))
+				{
+					case '1':
+						break;
+					case '2':
+						break;
+					case '3':
+						break;
+					case '4':
+						break;
+					case '5':
+						break;
+					case '6':
+						break;
+					case '7':
+						break;
+					default:
+						System.out.println("Invalid input.");
+						continue;
+				}
+			}
+			
 			ArrayList<ClientThread> clientThreadList = new ArrayList<ClientThread>();
 			
 			for (int i = 0; i < Integer.parseInt(numOfThreads); i++) {

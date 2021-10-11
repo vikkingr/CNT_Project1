@@ -58,7 +58,7 @@ public class ClientSocket1 {
 			
 			menuOption = scanner.nextLine();
 			
-			if (menuOption.length() > 1)
+			if (menuOption.length() != 1)
 			{
 				System.out.println("Invalid input.");
 				continue;

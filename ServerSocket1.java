@@ -26,7 +26,7 @@ public class ServerSocket1 {
 			
 			System.out.println("Client number: " + clientCount);
 			
-			serverThread.run();
+			serverThread.start();
 			
 		}
 		
